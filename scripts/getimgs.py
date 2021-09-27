@@ -20,13 +20,14 @@ except OSError as error:
 with open(f"files{filesep}imgs.txt", "rt", encoding="utf-8") as f:
     content = f.readlines()
 os.chdir(os.path.dirname(__file__) + filesep + "imgs")
+indx = 0
 for x in content:
     if str(x) == "0":
         continue
     if os.name != "nt":
         os.system(f"wget {x}")
     else:
-        with open("pic1.jpg", "wb") as handle:
+        with open(f"pic{indx}.jpg", "wb") as handle:
             response = requests.get(x, stream=True)
 
             if not response.ok:
@@ -37,3 +38,4 @@ for x in content:
                     break
 
                 handle.write(block)
+        indx += 1
