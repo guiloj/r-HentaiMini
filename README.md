@@ -28,33 +28,4 @@
 
 * I run Ubuntu on my computer so these scripts may not work properly on Windows (they should work tho)
 * the [`getimgs.py`](https://github.com/guiloj/r-HentaiMini/blob/main/scripts/getimgs.py) script will create a very big directory, only 660 images were about 550mb of space
-* if you have [wget](http://gnuwin32.sourceforge.net/packages/wget.htm) on your windows computer you can modify the [`getimgs.py`](https://github.com/guiloj/r-HentaiMini/blob/main/scripts/getimgs.py) script to look like this:
-#### modified:
-```python3
-for x in content:
-    if str(x) == "0":
-        continue
-    os.system(f"wget {x}")
-```
-#### original:
-```python3
-indx = 0
-for x in content:
-    if str(x) == "0":
-        continue
-    if os.name != "nt":
-        os.system(f"wget {x}")
-    else:
-        with open(f"pic{indx}.jpg", "wb") as handle:
-            response = requests.get(x, stream=True)
-
-            if not response.ok:
-                print(response)
-
-            for block in response.iter_content(1024):
-                if not block:
-                    break
-
-                handle.write(block)
-        indx += 1
-```
+* if you do not have [curl](https://curl.se/windows/) on your windows computer you can [download it here](https://curl.se/windows/) and add it to your computer's path, but [curl](https://curl.se/windows/) should be on windows by default
