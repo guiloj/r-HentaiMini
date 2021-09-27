@@ -6,12 +6,14 @@ import time
 
 filesep = "\\" if os.name == "nt" else "/"
 
-os.chdir(os.path.dirname(__file__))
+absFilePath = os.path.abspath(__file__)
+os.chdir(os.path.dirname(absFilePath))
+
 try:
-    os.mkdir(os.path.join(os.path.dirname(__file__), "files"))
+    os.mkdir(os.path.join(os.path.dirname(absFilePath), "files"))
 except OSError as error:
     print(error)
-    path = os.path.join(os.path.dirname(__file__), "files")
+    path = os.path.join(os.path.dirname(absFilePath), "files")
     print(
         f'if the "{path}" directory already exists in this path please remove it or move the file'
     )
