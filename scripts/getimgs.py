@@ -1,5 +1,4 @@
 import os
-import requests
 
 absFilePath = os.path.abspath(__file__)
 os.chdir( os.path.dirname(absFilePath) )
