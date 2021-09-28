@@ -22,7 +22,7 @@ with open(f"files{filesep}imgs.txt", "rt", encoding="utf-8") as f:
 os.chdir(os.path.dirname(absFilePath) + filesep + "imgs")
 
 for x, y in zip(content, range(len(content))):
-    if "0" in str(x):
+    if str(x) == "0\n":
         continue
     for typ in (".jpg", ".png", ".gif", ".jpeg"):
         if typ in x:
