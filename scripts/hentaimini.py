@@ -1,12 +1,32 @@
 import json
-import requests
 import os
 import re
 import time
 
-filesep = "\\" if os.name == "nt" else "/"
+try:
+    import requests
+except:
+    permission: str = input(
+        "The requests package is required for this program to work, install?(Y/N): "
+    )
+    if permission.lower() == "y":
+        print("trying pip")
+        os.system("pip install requests")
+        print("trying pip3")
+        os.system("pip3 install requests")
+        try:
+            import requests
+        except:
+            print("if nothing installed, please install it manually!")
+            print("program quitting! please restart the program!")
+            quit()
+        print("done! program starting...")
+    else:
+        quit()
 
-absFilePath = os.path.abspath(__file__)
+filesep: str = "\\" if os.name == "nt" else "/"
+
+absFilePath: str = os.path.abspath(__file__)
 os.chdir(os.path.dirname(absFilePath))
 
 try:
@@ -19,29 +39,30 @@ except OSError as error:
     )
     quit()
 
-url1 = "https://api.pushshift.io/reddit/search/submission/?subreddit=HentaiMini&sort=desc&sort_type=created_utc&after=1&before="
-before = str(int(time.time()))
-url2 = "&size=1000"
+URL1: str = "https://api.pushshift.io/reddit/search/submission/?subreddit=HentaiMini&sort=desc&sort_type=created_utc&after=1&before="
+before: str = str(int(time.time()))
+URL2: str = "&size=1000"
 
-data = json.loads(requests.get(f"{url1}{before}{url2}").text)
-before = data["data"][-1]["created_utc"]
+data: dict = json.loads(requests.get(f"{URL1}{before}{URL2}").text)
+before: int = data["data"][-1]["created_utc"]
 print("making requests...")
-req = 1
+req: int = 1
 while 1:
     req += 1
-    subdata = json.loads(requests.get(f"{url1}{before}{url2}").text)
+    subdata: dict = json.loads(requests.get(f"{URL1}{before}{URL2}").text)
     print(f"request num {req} done")
     if len(subdata["data"]) == 0:
         print("done")
         break
     data["data"] += subdata["data"]
-    before = data["data"][-1]["created_utc"]
+    before: int = data["data"][-1]["created_utc"]
 
 with open(f"files{filesep}fulldata.json", "wt", encoding="utf8") as f:
     f.write(json.dumps(data, indent=4))
 print("json dumped")
-links = []
-imgurls = []
+
+links: list = []
+imgurls: list = []
 
 for x in data["data"]:
     try:
@@ -72,3 +93,4 @@ with open(f"files{filesep}imgs.txt", "wt", encoding="utf8") as f:
 
 print("links/imgs dumped")
 print("program done")
+
