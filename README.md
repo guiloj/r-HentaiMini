@@ -2,7 +2,7 @@
 
 ## requirements
 - [python3](https://www.python.org/downloads/)
-- [requests](https://pypi.org/project/requests/)
+- [requests](https://pypi.org/project/requests/) _(can be automatically installed)_
 
 ## usage
 
