@@ -2,6 +2,7 @@
 
 ## requirements
 - [python3](https://www.python.org/downloads/)
+- [requests](https://pypi.org/project/requests/)
 
 ## usage
 
