@@ -16,6 +16,7 @@
 * wait for the program to execute
 * done!
 ### getimgs.py
+#### ([better automatic C# version](https://github.com/AnimeTheNeko/FileDownloader) by @AnimeTheNeko)
 * place the [`getimgs.py`](https://github.com/guiloj/r-HentaiMini/blob/main/scripts/getimgs.py) script in the same directory that [`hentaimini.py`](https://github.com/guiloj/r-HentaiMini/blob/main/scripts/hentaimini.py) was executed
 * make sure there is no `imgs` directory inside the cwd, if there is, delete it or move both the file and the `files` directory
 * open a terminal window in the current directory and execute:
